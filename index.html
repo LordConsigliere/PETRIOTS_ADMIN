@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Petriots| Dashboard</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="../../index3.html" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+     <!-- Right navbar links -->
+     <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown" style="visibility: hidden;">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-comments" style="font-size:larger"></i>
+          <span class="badge badge-danger navbar-badge"></span>
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="btn nav-link" data-toggle="dropdown" id="btnnotifadmin">
+          <i class="far fa-bell" style="font-size:larger"></i>
+          </a>
+          <span class="badge badge-danger navbar-badge" id="notification-count"></span>
+          <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right scroll">
+             <div id ="admin-notif">
+                </div>
+        </div>
+   </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #4154F1;">
+    <!-- Brand Logo -->
+    <a href="index.html" class="brand-link">
+      <img src="dist/img/logowhite.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Petriots</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="dist/img/user.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Administrator</a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline" style="visibility: hidden; position: absolute;">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="myToastContainer" style="position:fixed;bottom: 0; left: 0; margin-left: 15px; margin-bottom: 25px;"></div>
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item menu-open">
+            <a href="./index.html" class="nav-link active" style="background-color: #5c6cfb;">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">
+                Dashboard
+              </p>
+            </a>    
+          </li>
+          <li class="nav-header" style="font-family: Segoe UI, Arial, sans-serif;font-weight: 400;">Appointments</li>
+              <li class="nav-item">
+                <a href="pages/appointments/summary.html" class="nav-link">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+                  <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">Summary</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/appointments/request.html" class="nav-link">
+                  <i class="nav-icon fas fa-exclamation-circle"></i>
+                  <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">Request</p>
+                  <span class="badge badge-warning right" id="countReq"></span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/appointments/complete.html" class="nav-link">
+                  <i class="nav-icon 	far fa-calendar-check"></i>
+                  <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">Complete</p>
+                </a>
+              </li>
+          <li class="nav-header" style="font-family: Segoe UI, Arial, sans-serif;font-weight: 400;"s>Information</li>
+
+          <li class="nav-item">
+            <a href="pages/information/pet.html" class="nav-link">
+              <i class="nav-icon fas fa-paw"></i>
+              <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">
+                Pet
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="pages/information/owner.html" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">
+                Owners
+              </p>
+            </a>
+          </li>
+          <li class="nav-header" style="font-family: Segoe UI, Arial, sans-serif;font-weight: 400;">Analytics</li>
+          <li class="nav-item">
+            <a href="pages/analytics/reports.html" class="nav-link">
+              <i class="nav-icon fas fa-vial"></i>
+              <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">
+              Reports
+                
+              </p>
+              <span class="badge badge-warning right" id="countRep"></span>
+            </a>
+          </li>
+          <li class="nav-header" style="font-family: Segoe UI, Arial, sans-serif;font-weight: 400;">Others</li>
+          <li class="nav-item">
+            <a href="pages/feedback/feedback.html" class="nav-link">
+              <i class="nav-icon fas fa-bullhorn"></i>
+              <p style=" color: #DCE0FD;font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">
+               Feedbacks
+              </p>
+            </a>
+          </li>    
+          <li class="nav-item">
+            <a href="pages/chat/chat.html" class="nav-link">
+              <i class="nav-icon far fa-comment"></i>
+              <p style=" color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">
+             Messages
+
+              </p>
+            </a>
+          </li>   
+          <li class="nav-item">
+            <a href="" class="nav-link" id="logoutbtn">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">
+              Logout
+
+              </p>
+            </a>
+          </li>          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Dashboard</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3 id ="numpet">0</h3>
+
+                <p>Pets</p>
+              </div>
+              <div class="icon">
+                <i class="ionicons ion-ios-paw"></i>
+              </div>
+              <a href="pages/information/pet.html" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3 id ="numreport">0</h3>
+
+                <p>Reports</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="pages/analytics/reports.html" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3 id="numowners">0</h3>
+
+                <p>Pet Owners</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="pages/information/owner.html" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3 id="numfeed">0</h3>
+
+                <p>Feedbacks</p>
+              </div>
+              <div class="icon">
+                <i class="ionicons ion-speakerphone"></i>
+              </div>
+              <a href="pages/feedback/feedback.html" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <!-- AREA CHART -->
+            <div class="card card-primary" style="visibility: hidden; position: absolute;">
+              <div class="card-header">
+                <h3 class="card-title">Area Chart</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <div class="card card-success show" style="width: 1220px;">
+              <div class="card-header">
+                <h3 class="card-title">Case Reports</h3>
+
+               
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- DONUT CHART -->
+            <div class="card card-danger collapse" >
+              <div class="card-header">
+                <h3 class="card-title">Donut Chart</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- PIE CHART -->
+            <div class="card card-danger collapse">
+              <div class="card-header">
+                <h3 class="card-title">Pie Chart</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col (LEFT) -->
+          <div class="col-md-6 ">
+            <!-- LINE CHART -->
+            <div class="card card-info collapse" >
+              <div class="card-header">
+                <h3 class="card-title">Line Chart</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- BAR CHART -->
+      
+            <!-- /.card -->
+
+            <!-- STACKED BAR CHART -->
+            <div class="card card-success collapse">
+              <div class="card-header">
+                <h3 class="card-title">Stacked Bar Chart</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+          </div>
+          <!-- /.col (RIGHT) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 3.2.0
+    </div>
+    <strong>Copyright &copy; 2021-2023 <a href="https://adminlte.io">Petriots</a>.</strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Add Content Here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+
+<style>
+  .scroll {
+  height: 720px;
+  overflow: auto;
+}
+</style>
+<script>
+      
+var firebaseConfig = {
+      apiKey: "AIzaSyCwyVGv24xBXgcupXb6nZAEcuEadNUMsdQ",
+        authDomain: "petriots-9ae02.firebaseapp.com",
+        databaseURL: "https://petriots-9ae02-default-rtdb.firebaseio.com",
+        projectId: "petriots-9ae02",
+        storageBucket: "petriots-9ae02.appspot.com",
+        messagingSenderId: "728168171570",
+        appId: "1:728168171570:web:97301a09052ce3b8fe542b",
+        measurementId: "G-GVBQPKNDJ1"
+};
+
+// Initialize Firebase
+
+   
+  $(function () {
+firebase.initializeApp(firebaseConfig);
+
+var database = firebase.database();
+const user = JSON.parse(sessionStorage.getItem('username'));
+if(user != "admin"){
+  window.location.replace("petriots/index.html");
+}
+var dataRef = database.ref('Analytics');
+dataRef.once('value').then(function(snapshot) {
+  var unknowndisease = 0; // Initialize count variable to 0
+  var rabies = 0; 
+  var dist = 0 ;
+  var parvovirus = 0; 
+  var leps = 0; 
+  var respi = 0; 
+  snapshot.forEach(function(childSnapshot) {
+    var diag = childSnapshot.val().diag;
+    if(diag === "Unkown disease please go the the clinic for more information") {
+      unknowndisease++; // Increment count if diag is "Unknown disease"
+    }
+    if(diag === "Rabies") {
+      rabies++; // Increment count if diag is "Unknown disease"
+    }
+    if(diag === "Canine Parvovirus") {
+      parvovirus++; // Increment count if diag is "Unknown disease"
+    }
+
+    if(diag === "Leptosporis") {
+      leps++; // Increment count if diag is "Unknown disease"
+    }
+    if(diag === "Canine infectious respiratory disease") {
+      respi++; // Increment count if diag is "Unknown disease"
+    }
+    if(diag === "Canine Distemper") {
+      dist++; // Increment count if diag is "Unknown disease"
+    }
+  });
+
+    /* ChartJS
+     * -------
+     * Here we will create a few charts using ChartJS
+     */
+
+    //--------------
+    //- AREA CHART -
+    //--------------
+
+    // Get context with jQuery - using jQuery's .get() method.
+    var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
+
+    var areaChartData = {
+  labels  : ['Parvo Virus','Distemper', 'Respiratory Disease', 'Rabies', 'Leptospirosis', 'Unknown disease'],
+  datasets: [
+    {
+      label               : 'Number of Cases ',
+      backgroundColor     : 'rgba(60,141,188,0.9)',
+      borderColor         : 'rgba(60,141,188,0.8)',
+      pointRadius          : false,
+      pointColor          : '#3b8bba',
+      pointStrokeColor    : 'rgba(60,141,188,1)',
+      pointHighlightFill  : '#fff',
+      pointHighlightStroke: 'rgba(60,141,188,1)',
+      pointHoverBackgroundColor: 'rgba(60,141,188,0.9)',
+       pointHoverBorderColor: 'rgba(60,141,188,0.8)',
+
+      data                : [parvovirus, dist, respi, rabies, leps, unknowndisease]
+    }
+  ]
+};
+
+    var areaChartOptions = {
+      maintainAspectRatio : false,
+      responsive : true,
+      legend: {
+        display: true
+      },
+      scales: {
+        xAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }],
+        yAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }]
+      }
+    }
+
+    // This will get the first returned node in the jQuery collection.
+    new Chart(areaChartCanvas, {
+      type: 'line',
+      data: areaChartData,
+      options: areaChartOptions
+    })
+
+    //-------------
+    //- LINE CHART -
+    //--------------
+    //-------------
+    //- DONUT CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+    var donutData        = {
+      labels: [
+          'Chrome',
+          'IE',
+          'FireFox',
+          'Safari',
+          'Opera',
+          'Navigator',
+      ],
+      datasets: [
+        {
+          data: [700,500,400,600,300,100],
+          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+        }
+      ]
+    }
+    var donutOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    new Chart(donutChartCanvas, {
+      type: 'doughnut',
+      data: donutData,
+      options: donutOptions
+    })
+
+    //-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+    var pieData        = donutData;
+    var pieOptions     = {
+      maintainAspectRatio : false,
+      responsive : true,
+    }
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: pieData,
+      options: pieOptions
+    })
+
+    //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas = $('#barChart').get(0).getContext('2d');
+var barChartData = $.extend(true, {}, areaChartData);
+
+var barChartOptions = {
+  responsive              : true,
+  maintainAspectRatio     : false,
+  datasetFill             : false,
+  tooltips: {
+    mode: 'index'
+  }
+};
+
+new Chart(barChartCanvas, {
+  type: 'bar',
+  data: barChartData,
+  options: barChartOptions
+});
+
+    //---------------------
+    //- STACKED BAR CHART -
+    //---------------------
+    var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+    var stackedBarChartData = $.extend(true, {}, barChartData)
+
+    var stackedBarChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      scales: {
+        xAxes: [{
+          stacked: true,
+        }],
+        yAxes: [{
+          stacked: true
+        }]
+      }
+    }
+
+    new Chart(stackedBarChartCanvas, {
+      type: 'bar',
+      data: stackedBarChartData,
+      options: stackedBarChartOptions
+    })
+    });
+    var notifs = database.ref('AdminNotification');
+notifs.orderByChild("timestamp").on("value", function(snapshot) {
+  document.getElementById("admin-notif").innerHTML ="";
+  var notifications = [];
+  snapshot.forEach(function(childSnapshot) {
+    notifications.push(childSnapshot);
+  });
+  notifications.reverse(); // reverse the array to show the latest notification first
+  notifications.forEach(function(childSnapshot) {
+    // display the notification
+    var photo = childSnapshot.val().photoUrl;
+    var firstname =  childSnapshot.val().firstname;
+    var lastname = childSnapshot.val().lastname;
+    var date = childSnapshot.val().apt_date;
+    var time = childSnapshot.val().apt_time;
+    var petname = childSnapshot.val().petname;
+    var datenotif = childSnapshot.val().datenotif;
+    var timestamp = childSnapshot.val().timestamp;
+    var notype = childSnapshot.val().notype;
+
+    
+    var now = new Date().getTime();
+    var elapsedMinutes = Math.floor((now - timestamp) / (1000 * 60))
+
+    const message1 = document.createElement('a');
+    message1.classList.add('dropdown-item');
+
+    const newDiv = document.createElement('div');
+
+    // Set the class name of the div element
+    newDiv.className = 'dropdown-divider';
+    const media1 = document.createElement('div');
+    media1.classList.add('media');
+    message1.appendChild(media1);
+
+    const img1 = document.createElement('img');
+      if (photo == "default_photo_url.jpg") {
+        // If the photo is null, set the src attribute to the default user image
+        img1.setAttribute('src', '../../dist/img/user.png');
+      } else {
+        // If the photo is not null, set the src attribute to the photo data
+        img1.setAttribute('src', photo);
+      }
+    img1.style.height ="50px";
+    img1.style.width ="50px";
+    img1.style.objectFit ="cover";
+    img1.setAttribute('alt', 'User Avatar');
+    img1.classList.add('img-size-50', 'mr-3', 'img-circle');
+    media1.appendChild(img1);
+
+    const mediaBody1 = document.createElement('div');
+    mediaBody1.classList.add('media-body');
+    media1.appendChild(mediaBody1);
+
+    const p1 = document.createElement('p');
+    p1.classList.add('text-xs');
+    p1.style.fontSize = "10px";
+    p1.innerHTML = '<b>' + firstname +" " + lastname +'</b> has requested appointment for <b>'+ petname + '</b> on <b>' + date  + '</b> at <b>' + time + '</b>';
+
+
+    const p21 = document.createElement('p');
+    p21.classList.add('text-xs');
+    p21.style.fontSize = "10px";
+    p21.innerHTML = '<b>' + firstname +" " + lastname + '</b> has sent symptoms for '+ petname + ' .Please check the analytics page to evaluate the pet symptoms. Thank you. ';
+  
+
+    const p22 = document.createElement('p');
+    p22.classList.add('text-xs');
+    p22.style.fontSize = "10px";
+    p22.innerHTML = '<b>' + firstname +" " + lastname + '</b> has updated the appointment for '+'<b>'+ petname +'</b>'+ ' on <b>' + date  + '</b> at <b>' + time + '</b>';
+
+    const p23 = document.createElement('p');
+    p23.classList.add('text-xs');
+    p23.style.fontSize = "10px";
+    p23.innerHTML = '<b>' + firstname +" " + lastname + '</b> has cancelled the confirmed appointment for '+'<b>'+ petname +'</b>'+ ' on <b>' + date  + '</b> at <b>' + time + '</b>';
+
+    
+    const p24 = document.createElement('p');
+    p24.classList.add('text-xs');
+    p24.style.fontSize = "10px";
+    p24.innerHTML = '<b>' + firstname +" " + lastname + '</b> has cancelled the requested appointment for '+'<b>'+ petname +'</b>'+ ' on <b>' + date  + '</b> at <b>' + time + '</b>';
+
+    if(notype == "OwnerSymp"){
+      mediaBody1.appendChild(p21);
+    }
+    if(notype == "OwnerApt"){
+      mediaBody1.appendChild(p1);
+    }
+    if(notype == "OwnerAptUpd"){
+      mediaBody1.appendChild(p22);
+    }
+    if(notype == "OwnerAptCUpd"){
+      mediaBody1.appendChild(p23);
+    }
+    if(notype == "OwnerAptRUpd"){
+      mediaBody1.appendChild(p24);
+    }
+    const h31 = document.createElement('h3');
+    h31.classList.add('dropdown-item-title');
+    h31.style.visibility ="hidden";
+    h31.style.position = "absolute";
+    h31.textContent = firstname+ " " +lastname;
+    mediaBody1.appendChild(h31);
+
+    
+    const span1 = document.createElement('span');
+    span1.classList.add('float-right', 'text-sm', 'text-danger');
+    const icon1 = document.createElement('i');
+    icon1.classList.add('fas', 'fa-star');
+    span1.appendChild(icon1);
+    h31.appendChild(span1);
+
+
+    const p3 = document.createElement('p');
+    p3.classList.add('text-xs', 'text-muted');
+    p3.innerHTML = '<i class="far fa-clock mr-1"></i>' + getElapsedTimeString(elapsedMinutes);
+    mediaBody1.appendChild(p3);
+
+    setInterval(function() {
+        elapsedMinutes = Math.floor((new Date().getTime() - timestamp) / (1000 * 60));
+        p3.innerHTML = '<i class="far fa-clock mr-1"></i>' + getElapsedTimeString(elapsedMinutes);
+    }, 60000);
+
+    const divider = document.createElement('div');
+    divider.classList.add('dropdown-divider');
+
+    document.getElementById("admin-notif").appendChild(divider);
+    document.getElementById("admin-notif").appendChild(message1);
+    document.getElementById("admin-notif").appendChild(divider);
+
+  
+  });
+});
+
+function getElapsedTimeString(minutes) {
+    if (minutes < 1) {
+        return 'Just now';
+    } else if (minutes < 60) {
+        return minutes + ' minutes ago';
+    } else if (minutes < 24 * 60) {
+        var hours = Math.floor(minutes / 60);
+        return hours + ' ' + (hours == 1 ? 'hour' : 'hours') + ' ago';
+    } else if (minutes < 7 * 24 * 60) {
+        var days = Math.floor(minutes / (24 * 60));
+        return days + ' ' + (days == 1 ? 'day' : 'days') + ' ago';
+    } else {
+        var weeks = Math.floor(minutes / (7 * 24 * 60));
+        return weeks + ' ' + (weeks == 1 ? 'week' : 'weeks') + ' ago';
+    }
+}
+
+/*
+var aptRefer = database.ref('Appointments');
+
+// This function will be called whenever a child node in Analytics is changed
+aptRefer.on('child_added', function(snapshot) {
+  sum_table.ajax.reload();
+
+
+});*/
+
+var count = 0;
+  var counNotif = database.ref('AdminNotification')
+  counNotif.on('child_added', function(childSnapshot) {
+    var id = childSnapshot.val().adminotif;
+    var status = childSnapshot.val().isOpen;
+    var message = childSnapshot.val().message;
+    var photo = childSnapshot.val().photoUrl;
+    var stat = childSnapshot.val().status;
+
+    if(stat == "sent"){
+      $(document).Toasts('create', {
+        autohide: true ,
+        title: 'New Notification',
+        delay: 3500,
+        body: '<div class="media">' +
+              '<img class="img-size-50 mr-3 img-circle" style="border-radius: 50%; height: 50px; width: 50px; object-fit: cover; margin-right: 10px;" src="' + (photo === "default_photo_url.jpg" ? "../../dist/img/user.png" : photo) + '"">' +
+              '<div class="media-body">' + message
+              +'</div>' +
+          '</div>',
+        position: 'bottomLeft',
+        style: {
+          rtl: true
+        }
+      });
+
+// append the toast to the container
+$('.toast').appendTo('#myToastContainer');
+
+
+var newStat = {
+              status: "received",
+            };
+    database.ref('AdminNotification/' + id).update(newStat); 
+}
+
+    if(status === "No") {
+      var countElement = document.getElementById("notification-count");
+      count++;
+      countElement.style.backgroundColor = "#ff0000";
+      countElement.style.visibility = "visible";
+      countElement.textContent = count.toString();
+      $(document).ready(function() {
+
+});
+    }
+
+  });
+
+  $('#btnnotifadmin').on('click', function() {
+    count = 0;
+    var countElement = document.getElementById("notification-count");
+  countElement.style.backgroundColor = "transparent";
+  countElement.style.visibility = "hidden";
+  countElement.textContent = "";
+  database.ref('AdminNotification').once('value', function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+    childSnapshot.ref.update({
+      isOpen: "Yes"
+         });
+      });
+    });
+  });
+
+  var newcount = 0;
+var countPending = document.getElementById("countReq");
+var countPend = database.ref('Appointments');
+
+countPend.on('child_added', function(childSnapshot) {
+
+  var statpen = childSnapshot.val().apt_stat;
+  if (statpen === "Pending") {
+    countPending.textContent ="";
+    newcount++;
+    countPending.textContent = newcount.toString();
+  }
+});
+
+countPend.on('child_changed', function(childSnapshot) {
+  countPending.textContent ="";
+  var statpen = childSnapshot.val().apt_stat;
+  var prevStatpen = childSnapshot.previous?.val()?.apt_stat;
+  
+  if (statpen === "Cancelled" && prevStatpen !== "Cancelled") {
+    countPending.textContent ="";
+    newcount--;
+    countPending.textContent = newcount.toString();
+  } else if (statpen !== prevStatpen && (statpen === "Pending" || prevStatpen === "Pending")) {
+    countPending.textContent ="";
+    if (newcount > 0) {
+      newcount--;
+      countPending.textContent = newcount.toString();
+    }
+    if (statpen === "Pending") {
+      newcount++;
+      countPending.textContent = newcount.toString();
+    }
+  }
+});
+
+var newcountrep = 0;
+var countReport = document.getElementById("countRep");
+var countReps = database.ref('Analytics');
+countReps.on('child_added', function(childSnapshot) {
+  var statrep =  childSnapshot.val().status;
+  if(statrep === "Pending") {
+    newcountrep++;
+    countReport.textContent = newcountrep.toString();
+  }
+});
+countPend.on('child_changed', function(childSnapshot) {
+  var statrep =  childSnapshot.val().apt_stat;
+  if(statrep === "Pending") {
+    newcountrep++;
+    countReport.textContent = newcountrep.toString();
+  } else {
+    newcountrep--;
+    countReport.textContent = newcountrep.toString();
+  }
+});
+
+ // Get a reference to the "Pets" node in the database
+ const petsRef = database.ref('Pets');
+
+petsRef.once('value', (snapshot) => {
+  const numChildren = snapshot.numChildren();
+  console.log(`Number of children: ${numChildren}`);
+  const petnum = document.getElementById("numpet")
+  petnum.innerHTML = numChildren;
+});
+
+const repsRef = database.ref('Analytics');
+
+repsRef.once('value', (snapshot) => {
+  const numChildren = snapshot.numChildren();
+  console.log(`Number of children: ${numChildren}`);
+  const repnum = document.getElementById("numreport")
+  repnum.innerHTML = numChildren;
+});
+
+
+const ownersRef = database.ref('PetOwners');
+
+ownersRef.once('value', (snapshot) => {
+  const numChildren = snapshot.numChildren();
+  console.log(`Number of children: ${numChildren}`);
+  const numowners = document.getElementById("numowners")
+  numowners.innerHTML = numChildren;
+});
+
+const feedRef = database.ref('Feedbacks');
+
+feedRef.once('value', (snapshot) => {
+  const numChildren = snapshot.numChildren();
+  console.log(`Number of children: ${numChildren}`);
+  const numfeed = document.getElementById("numfeed")
+  numfeed.innerHTML = numChildren;
+});
+  // Log the total number of children to the console
+})
+
+$('#logoutbtn').on('click', function() {
+  sessionStorage.removeItem('username');
+  window.location.href = "petriots/index.html";
+});
+</script>
+</body>
+</html>

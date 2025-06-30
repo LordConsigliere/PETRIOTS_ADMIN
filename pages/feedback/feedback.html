@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Petriots | Appointments</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+  <!-- BS Stepper -->
+  <link rel="stylesheet" href="../../plugins/bs-stepper/css/bs-stepper.min.css">
+  <!-- dropzonejs -->
+  <link rel="stylesheet" href="../../plugins/dropzone/min/dropzone.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="../../index3.html" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown" style="visibility: hidden;">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-comments" style="font-size:larger"></i>
+          <span class="badge badge-danger navbar-badge"></span>
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="btn nav-link" data-toggle="dropdown" id="btnnotifadmin">
+          <i class="far fa-bell" style="font-size:larger"></i>
+          </a>
+          <span class="badge badge-danger navbar-badge" id="notification-count"></span>
+          <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right scroll">
+             <div id ="admin-notif">
+                </div>
+        </div>
+   </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #4154F1;">
+    <!-- Brand Logo -->
+    <a href="../../index3.html" class="brand-link">
+      <img src="../../dist/img/logowhite.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Petriots</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="../../dist/img/user.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Administrator</a>
+        </div>
+      </div>
+   <!-- Sidebar Menu -->
+   <div id="myToastContainer" style="position:fixed;bottom: 0; left: 0; margin-left: 15px; margin-bottom: 25px;"></div>
+      <nav class="mt-2" >
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" >
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="../../index.html" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p style="font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">
+                Dashboard
+              </p>
+            </a>    
+          </li>
+          <li class="nav-header" style="font-family: Segoe UI, Arial, sans-serif;font-weight: 400;">Appointments</li>
+              <li class="nav-item">
+                <a href="../appointments/summary.html" class="nav-link">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+                  <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">Summary</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../appointments/request.html" class="nav-link">
+                  <i class="nav-icon fas fa-exclamation-circle"></i>
+                  <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">Request</p>
+                  <span class="badge badge-warning right" id="countReq"></span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../appointments/complete.html" class="nav-link">
+                  <i class="nav-icon 	far fa-calendar-check"></i>
+                  <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">Complete</p>
+                </a>
+              </li>
+                 
+          <li class="nav-header" style="font-family: Segoe UI, Arial, sans-serif;font-weight: 400;">Information</li>
+
+          <li class="nav-item">
+            <a href="../information/pet.html" class="nav-link">
+              <i class="nav-icon fas fa-paw"></i>
+              <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">
+                Pet
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../information/owner.html" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">
+                Owners
+              </p>
+            </a>
+          </li>
+          <li class="nav-header">Analytics</li>
+          <li class="nav-item">
+            <a href="../analytics/reports.html" class="nav-link">
+              <i class="nav-icon fas fa-vial"></i>
+              <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">
+               Reports
+              </p>
+              <span class="badge badge-warning right" id="countRep"></span>
+            </a>
+          </li>
+          <li class="nav-header" style="font-family: Segoe UI, Arial, sans-serif;font-weight: 400;">Others</li>
+          <li class="nav-item">
+            <a href="../feedback/feedback.html" class="nav-link active" style="background-color: #5c6cfb;">
+              <i class="nav-icon fas fa-bullhorn"></i>
+              <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">
+              Feedbacks
+
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="../chat/chat.html" class="nav-link">
+              <i class="nav-icon far fa-comment"></i>
+              <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">
+             Messages
+
+              </p>
+            </a>
+          </li>   
+          <li class="nav-item">
+            <a href = "" class="nav-link" id="logoutbtn">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p style="color: #DCE0FD; font-family: Segoe UI, Arial, sans-serif;font-weight: 300; font-size: 15px;">
+              Logout
+
+              </p>
+            </a>
+          </li>               
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Feedbacks</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Others</a></li>
+              <li class="breadcrumb-item active">Feedbacks</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <div class="modal fade" id="feedModal">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content" >
+          <div class="modal-header">
+            <h4 class="modal-title">Feedback</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body loader">
+         
+                                                             
+            <div id="feedback_details"> </div>
+  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              
+              <div class="card-header">
+                <h3 class="card-title">Summary</h3>
+
+                <p style="float: right; font-weight: 500;"  id="avgrating"></p>
+                <div class="rate" style="float: right;margin-bottom: -30px;margin-top: -1px; pointer-events: none" id="averagestars">
+                  <input type="radio" id="star5" name="rate" value="5"  disabled/>
+                  <label for="star5" title="text">5 stars</label>
+                  <input type="radio" id="star4" name="rate" value="4" disabled/>
+                  <label for="star4" title="text">4 stars</label>
+                  <input type="radio" id="star3" name="rate" value="3" disabled/>
+                  <label for="star3" title="text">3 stars</label>
+                  <input type="radio" id="star2" name="rate" value="2" disabled/>
+                  <label for="star2" title="text">2 stars</label>
+                  <input type="radio" id="star1" name="rate" value="1" disabled/>
+                  <label for="star1" title="text">1 star</label>
+                
+              </div>  
+              
+                <h3 class="card-title" style="float: right;margin-right: 6px;font-weight: 600;">Average rating: </h3>
+               
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="feed-table-apt" class="table table-bordered table-hover" style="width:100%">
+                  <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Rating</th>
+                        <th>Message</th>
+                        <th>Action</th>
+                         </tr>
+                     </thead>
+                <tbody>                                                                     
+                </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2021-2023 <a href="https://adminlte.io">Petriots</a>.</strong> All rights reserved.
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="../../plugins/moment/moment.min.js"></script>
+<script src="../../plugins/inputmask/jquery.inputmask.min.js"></script>
+<!-- date-range-picker -->
+<script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="../../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<!-- BS-Stepper -->
+<script src="../../plugins/bs-stepper/js/bs-stepper.min.js"></script>
+<!-- dropzonejs -->
+<script src="../../plugins/dropzone/min/dropzone.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../../plugins/jszip/jszip.min.js"></script>
+<script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../../plugins/toastr/toastr.min.js"></script>
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+
+
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+
+
+<style>
+     .scroll {
+  height: 720px;
+  overflow: auto;
+}
+.rate {
+    height: 46px;
+    padding: 0 10px;
+    display: flex;
+    float: left;
+    flex-direction: row-reverse;
+}
+
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+
+.rate:not(:checked) > label {
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:20px;
+    color:#ccc;
+}
+
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+.circle-icon a{
+ 
+ background : #92D1C3;
+ text-align: center;
+ float: left;
+ width: 29px;
+ height: 29px;
+ border-radius: 100%;
+ margin-right: 1px;
+ vertical-align:center;
+ text-align:center;
+ cursor: pointer;transition: all .25s ease-in-out;
+}
+.circle-icon i{
+ cursor: pointer;transition: all .25s ease-in-out;
+ color: white;
+ font-size: 12px;
+ line-height: 36px;
+}
+
+.circle-icon a:hover{
+ color: #fff;
+ background-color: #8BB8A8;
+ border-color: #8BB8A8
+}
+
+.circle-update a{
+ background : #F6C23E;
+ text-align: center;
+ float: left;
+ width: 29px;
+ height: 29px;
+ border-radius: 100%;
+ margin-right: 1px;
+ cursor: pointer;transition: all .25s ease-in-out;
+}
+.circle-update a i{
+ cursor: pointer;transition: all .25s ease-in-out;
+ color: white;
+ font-size: 12px;
+ line-height: 36px;
+}
+
+.circle-update a:hover{
+ color: #fff;
+ background-color: #DFB13D;
+ border-color: #DFB13D;
+}
+.circle-del a{
+ background : #E74A3B;
+ text-align: center;
+ float: left;
+ width: 29px;
+ height: 29px;
+ border-radius: 100%;
+ margin-right: 1px;
+}
+.circle-del a i{
+ color: white;
+ font-size: 12px;
+ line-height: 36px;
+ 
+}
+.circle-del a:hover{
+ color: #fff;
+ background-color: #C94539;
+ border-color: #C94539;
+}
+.loading-text{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 62%; 
+      left: 48.7%;
+      position: absolute;
+      font-size: 17px;
+}
+
+.loader {
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 50%; 
+      left: 47%;
+      margin-top: 135px;
+      margin-bottom: 135px; 
+      animation: rotate 1s linear infinite
+    }
+    .loader::before {
+      content: "";
+      box-sizing: border-box;
+      position: absolute;
+      inset: 0px;
+      border-radius: 50%;
+      border: 5px solid #5c6cfb;;
+      animation: prixClipFix 2s linear infinite ;
+    }
+
+    @keyframes rotate {
+      100%   {transform: rotate(360deg)}
+    }
+
+    @keyframes prixClipFix {
+        0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+        25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+        50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+        75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+        100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+    }
+</style>
+<style>
+  #add-apt tr{
+               cursor: pointer;
+               transition: all .25s ease-in-out;
+                  }
+   #add-apt tr:hover{background-color: #ddd;}
+
+  #add-apt tr.selected td {
+  background: none repeat scroll 0 0 #A9E2CE;
+  color: #000000;
+      }
+</style>
+
+<script>
+  $(document).ready(function() {
+    
+  });
+  </script>
+<script>
+  
+var sum_table;
+$(document).ready(function() {
+
+  sum_table = $('#feed-table-apt').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "responsive": true,
+        "ajax": {
+            "url": "../../datatable_petriots/datatable-feedback.php",
+            "type": "POST",
+            "data": function(data) {
+                // data processing here
+                return data;
+            },
+            "dataSrc": function(response) {
+                // decode the JSON response and return the data
+                return response.data;
+            }
+        },
+        "columns": [
+            { "data": "date","width": "130px"},
+            { "data": "full_name" ,"width": "150px" },
+            { "data": "feedback" ,"width": "80px"},
+            { "data": "message" },
+            { "data": "action",  "width": "80px"},
+           
+        ]
+    });
+    });
+</script>
+
+<script>
+ 
+var firebaseConfig = {
+      apiKey: "AIzaSyCwyVGv24xBXgcupXb6nZAEcuEadNUMsdQ",
+        authDomain: "petriots-9ae02.firebaseapp.com",
+        databaseURL: "https://petriots-9ae02-default-rtdb.firebaseio.com",
+        projectId: "petriots-9ae02",
+        storageBucket: "petriots-9ae02.appspot.com",
+        messagingSenderId: "728168171570",
+        appId: "1:728168171570:web:97301a09052ce3b8fe542b",
+        measurementId: "G-GVBQPKNDJ1"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+var database = firebase.database();
+  
+var dataRef = database.ref('Feedbacks');
+var sumRating = 0;
+var sumWeight = 0;
+dataRef.once('value').then(function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+    var feedback = childSnapshot.val().feedback;
+    var rating = parseInt(feedback);
+    var weight = 1; // you can assign a weight based on your preference, or use a dynamic weighting system based on other factors such as date, relevance, etc.
+    sumRating += rating * weight;
+    sumWeight += weight;
+  });
+  var weightedMean = sumRating / sumWeight;
+  weightedMean = weightedMean.toFixed(2);
+  // Set the appropriate input element to be checked based on the weightedMean value
+  if (weightedMean >= 4.5) {
+    document.getElementById('star5').checked = true;
+  } else if (weightedMean >= 3.5) {
+    document.getElementById('star4').checked = true;
+  } else if (weightedMean >= 2.5) {
+    document.getElementById('star3').checked = true;
+  } else if (weightedMean >= 1.5) {
+    document.getElementById('star2').checked = true;
+  } else {
+    document.getElementById('star1').checked = true;
+  }
+
+  // Set the text content of the averagestars element to display the weightedMean value
+
+  document.getElementById("avgrating").textContent = "(" + weightedMean +" " + "stars" +")";
+
+
+});
+
+$(document).on('click', '.checkfeed', function(event){
+  var fid = $(this).data('id');
+  $('#feedModal').modal('show');
+  $('.modal-body').addClass('loader');
+  $('#feedback_details').empty();
+  $.ajax({
+
+      url:"../feedback/feedback.php",
+       method:"POST",
+       data:{fid:fid},
+       success:function(data)
+      {
+      
+          $('#feedback_details').html(data);
+          $('.modal-body').removeClass('loader');
+
+
+      }
+  })
+  
+});
+
+var notifs = database.ref('AdminNotification');
+notifs.orderByChild("timestamp").on("value", function(snapshot) {
+  document.getElementById("admin-notif").innerHTML ="";
+  var notifications = [];
+  snapshot.forEach(function(childSnapshot) {
+    notifications.push(childSnapshot);
+  });
+  notifications.reverse(); // reverse the array to show the latest notification first
+  notifications.forEach(function(childSnapshot) {
+    // display the notification
+    var photo = childSnapshot.val().photoUrl;
+    var firstname =  childSnapshot.val().firstname;
+    var lastname = childSnapshot.val().lastname;
+    var date = childSnapshot.val().apt_date;
+    var time = childSnapshot.val().apt_time;
+    var petname = childSnapshot.val().petname;
+    var datenotif = childSnapshot.val().datenotif;
+    var timestamp = childSnapshot.val().timestamp;
+    var notype = childSnapshot.val().notype;
+
+    
+    var now = new Date().getTime();
+    var elapsedMinutes = Math.floor((now - timestamp) / (1000 * 60))
+
+    const message1 = document.createElement('a');
+    message1.classList.add('dropdown-item');
+
+    const newDiv = document.createElement('div');
+
+    // Set the class name of the div element
+    newDiv.className = 'dropdown-divider';
+    const media1 = document.createElement('div');
+    media1.classList.add('media');
+    message1.appendChild(media1);
+
+    const img1 = document.createElement('img');
+      if (photo == "default_photo_url.jpg") {
+        // If the photo is null, set the src attribute to the default user image
+        img1.setAttribute('src', '../../dist/img/user.png');
+      } else {
+        // If the photo is not null, set the src attribute to the photo data
+        img1.setAttribute('src', photo);
+      }
+    img1.style.height ="50px";
+    img1.style.width ="50px";
+    img1.style.objectFit ="cover";
+    img1.setAttribute('alt', 'User Avatar');
+    img1.classList.add('img-size-50', 'mr-3', 'img-circle');
+    media1.appendChild(img1);
+
+    const mediaBody1 = document.createElement('div');
+    mediaBody1.classList.add('media-body');
+    media1.appendChild(mediaBody1);
+
+    const p1 = document.createElement('p');
+    p1.classList.add('text-xs');
+    p1.style.fontSize = "10px";
+    p1.innerHTML = '<b>' + firstname +" " + lastname +'</b> has requested appointment for <b>'+ petname + '</b> on <b>' + date  + '</b> at <b>' + time + '</b>';
+
+
+    const p21 = document.createElement('p');
+    p21.classList.add('text-xs');
+    p21.style.fontSize = "10px";
+    p21.innerHTML = '<b>' + firstname +" " + lastname + '</b> has sent symptoms for '+ petname + ' .Please check the analytics page to evaluate the pet symptoms. Thank you. ';
+  
+
+    const p22 = document.createElement('p');
+    p22.classList.add('text-xs');
+    p22.style.fontSize = "10px";
+    p22.innerHTML = '<b>' + firstname +" " + lastname + '</b> has updated the appointment for '+'<b>'+ petname +'</b>'+ ' on <b>' + date  + '</b> at <b>' + time + '</b>';
+
+    const p23 = document.createElement('p');
+    p23.classList.add('text-xs');
+    p23.style.fontSize = "10px";
+    p23.innerHTML = '<b>' + firstname +" " + lastname + '</b> has cancelled the confirmed appointment for '+'<b>'+ petname +'</b>'+ ' on <b>' + date  + '</b> at <b>' + time + '</b>';
+
+    
+    const p24 = document.createElement('p');
+    p24.classList.add('text-xs');
+    p24.style.fontSize = "10px";
+    p24.innerHTML = '<b>' + firstname +" " + lastname + '</b> has cancelled the requested appointment for '+'<b>'+ petname +'</b>'+ ' on <b>' + date  + '</b> at <b>' + time + '</b>';
+
+    if(notype == "OwnerSymp"){
+      mediaBody1.appendChild(p21);
+    }
+    if(notype == "OwnerApt"){
+      mediaBody1.appendChild(p1);
+    }
+    if(notype == "OwnerAptUpd"){
+      mediaBody1.appendChild(p22);
+    }
+    if(notype == "OwnerAptCUpd"){
+      mediaBody1.appendChild(p23);
+    }
+    if(notype == "OwnerAptRUpd"){
+      mediaBody1.appendChild(p24);
+    }
+    const h31 = document.createElement('h3');
+    h31.classList.add('dropdown-item-title');
+    h31.style.visibility ="hidden";
+    h31.style.position = "absolute";
+    h31.textContent = firstname+ " " +lastname;
+    mediaBody1.appendChild(h31);
+
+    
+    const span1 = document.createElement('span');
+    span1.classList.add('float-right', 'text-sm', 'text-danger');
+    const icon1 = document.createElement('i');
+    icon1.classList.add('fas', 'fa-star');
+    span1.appendChild(icon1);
+    h31.appendChild(span1);
+
+
+    const p3 = document.createElement('p');
+    p3.classList.add('text-xs', 'text-muted');
+    p3.innerHTML = '<i class="far fa-clock mr-1"></i>' + getElapsedTimeString(elapsedMinutes);
+    mediaBody1.appendChild(p3);
+
+    setInterval(function() {
+        elapsedMinutes = Math.floor((new Date().getTime() - timestamp) / (1000 * 60));
+        p3.innerHTML = '<i class="far fa-clock mr-1"></i>' + getElapsedTimeString(elapsedMinutes);
+    }, 60000);
+
+    const divider = document.createElement('div');
+    divider.classList.add('dropdown-divider');
+
+    document.getElementById("admin-notif").appendChild(divider);
+    document.getElementById("admin-notif").appendChild(message1);
+    document.getElementById("admin-notif").appendChild(divider);
+
+  
+  });
+});
+
+function getElapsedTimeString(minutes) {
+    if (minutes < 1) {
+        return 'Just now';
+    } else if (minutes < 60) {
+        return minutes + ' minutes ago';
+    } else if (minutes < 24 * 60) {
+        var hours = Math.floor(minutes / 60);
+        return hours + ' ' + (hours == 1 ? 'hour' : 'hours') + ' ago';
+    } else if (minutes < 7 * 24 * 60) {
+        var days = Math.floor(minutes / (24 * 60));
+        return days + ' ' + (days == 1 ? 'day' : 'days') + ' ago';
+    } else {
+        var weeks = Math.floor(minutes / (7 * 24 * 60));
+        return weeks + ' ' + (weeks == 1 ? 'week' : 'weeks') + ' ago';
+    }
+}
+
+/*
+var aptRefer = database.ref('Appointments');
+
+// This function will be called whenever a child node in Analytics is changed
+aptRefer.on('child_added', function(snapshot) {
+  sum_table.ajax.reload();
+
+
+});*/
+
+var count = 0;
+  var counNotif = database.ref('AdminNotification')
+  counNotif.on('child_added', function(childSnapshot) {
+    var id = childSnapshot.val().adminotif;
+    var status = childSnapshot.val().isOpen;
+    var message = childSnapshot.val().message;
+    var photo = childSnapshot.val().photoUrl;
+    var stat = childSnapshot.val().status;
+
+    if(stat == "sent"){
+      $(document).Toasts('create', {
+        autohide: true ,
+        title: 'New Notification',
+        delay: 3500,
+        body: '<div class="media">' +
+              '<img class="img-size-50 mr-3 img-circle" style="border-radius: 50%; height: 50px; width: 50px; object-fit: cover; margin-right: 10px;" src="' + (photo === "default_photo_url.jpg" ? "../../dist/img/user.png" : photo) + '"">' +
+              '<div class="media-body">' + message
+              +'</div>' +
+          '</div>',
+        position: 'bottomLeft',
+        style: {
+          rtl: true
+        }
+      });
+
+// append the toast to the container
+$('.toast').appendTo('#myToastContainer');
+
+
+var newStat = {
+              status: "received",
+            };
+    database.ref('AdminNotification/' + id).update(newStat); 
+}
+
+    if(status === "No") {
+      var countElement = document.getElementById("notification-count");
+      count++;
+      countElement.style.backgroundColor = "#ff0000";
+      countElement.style.visibility = "visible";
+      countElement.textContent = count.toString();
+      $(document).ready(function() {
+
+});
+    }
+
+  });
+
+  $('#btnnotifadmin').on('click', function() {
+    count = 0;
+    var countElement = document.getElementById("notification-count");
+  countElement.style.backgroundColor = "transparent";
+  countElement.style.visibility = "hidden";
+  countElement.textContent = "";
+  database.ref('AdminNotification').once('value', function(snapshot) {
+  snapshot.forEach(function(childSnapshot) {
+    childSnapshot.ref.update({
+      isOpen: "Yes"
+         });
+      });
+    });
+  });
+
+  var newcount = 0;
+var countPending = document.getElementById("countReq");
+var countPend = database.ref('Appointments');
+
+countPend.on('child_added', function(childSnapshot) {
+
+  var statpen = childSnapshot.val().apt_stat;
+  if (statpen === "Pending") {
+    countPending.textContent ="";
+    newcount++;
+    countPending.textContent = newcount.toString();
+  }
+});
+
+countPend.on('child_changed', function(childSnapshot) {
+  countPending.textContent ="";
+  var statpen = childSnapshot.val().apt_stat;
+  var prevStatpen = childSnapshot.previous?.val()?.apt_stat;
+  
+  if (statpen === "Cancelled" && prevStatpen !== "Cancelled") {
+    countPending.textContent ="";
+    newcount--;
+    countPending.textContent = newcount.toString();
+  } else if (statpen !== prevStatpen && (statpen === "Pending" || prevStatpen === "Pending")) {
+    countPending.textContent ="";
+    if (newcount > 0) {
+      newcount--;
+      countPending.textContent = newcount.toString();
+    }
+    if (statpen === "Pending") {
+      newcount++;
+      countPending.textContent = newcount.toString();
+    }
+  }
+});
+
+var newcountrep = 0;
+var countReport = document.getElementById("countRep");
+var countReps = database.ref('Analytics');
+countReps.on('child_added', function(childSnapshot) {
+  var statrep =  childSnapshot.val().status;
+  if(statrep === "Pending") {
+    newcountrep++;
+    countReport.textContent = newcountrep.toString();
+  }
+});
+countReps.on('child_changed', function(childSnapshot) {
+  var statrep =  childSnapshot.val().apt_stat;
+  if(statrep === "Pending") {
+    newcountrep++;
+    countReport.textContent = newcountrep.toString();
+  } else {
+    newcountrep--;
+    countReport.textContent = newcountrep.toString();
+  }
+});
+const users = JSON.parse(sessionStorage.getItem('username'));
+if(users != "admin"){
+  window.location.replace("../../petriots/index.html");
+}
+  $('#logoutbtn').on('click', function() {
+  const user = JSON.parse(sessionStorage.removeItem('username'));
+  window.location.href = "../../petriots/index.html";
+});
+  
+</script>
+
+</body>
+</html>

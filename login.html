@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petriot Login</title>
+    <meta name="author" content="David Grzyb">
+    <meta name="description" content="">
+
+    <!-- Tailwind -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+
+        .font-family-karla {
+            font-family: karla;
+        }
+    </style>
+    
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+></script>
+</head>
+<body class="bg-white font-family-karla h-screen">
+<div class="card">
+    <div class="card-body">
+        <div class="w-full flex flex-wrap">
+
+        <!-- Login Section -->
+                <div class="w-full md:w-1/2 flex flex-col">
+
+                    <div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-24">
+                        <a href="petriots/index.html" class="bg-white text-white font-bold text-xl p-4" style="background-color: #4154F1;">Petriots</a>
+                    </div>
+
+                    <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+                        <p class="text-center text-3xl">Welcome.</p>
+                        <form class="flex flex-col pt-3 md:pt-8" onsubmit="event.preventDefault();">
+                            <div class="flex flex-col pt-4">
+                                <label for="email" class="text-lg">Login</label>
+                                <input type="text" placeholder="Username" id="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                           
+                                <small class="small-error1" id="msgerror">
+                                    Error Message
+                                </small>
+                            </div>
+                            <div class="flex flex-col pt-4 ">
+                                <input type="password" id="password" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">   
+                                <small class="small-error" id="errormsg">
+                                    Error Message
+                                </small>
+                                
+                            </div>
+            
+                            <input type="submit" value="Log In" id="loginbtn" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8" style="background-color: #4154F1;">
+                        </form>
+                    </div>
+
+                </div>
+
+        <!-- Image Section -->
+                <div class="w-1/2 shadow-2xl">
+                    <img class="object-cover w-full h-screen hidden md:block" src="dist/img/login.jpg">
+                </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="plugins/jquery/jquery.min.js"></script>
+<script src="plugins/toastr/toastr.min.js"></script>
+<style>
+
+.success{
+  border-style: solid;
+  border-radius:8px;
+  border-width: thin;
+  border-color:#2ecc71 ;
+
+
+}
+.error{
+  border-style: solid;
+  border-radius:8px;
+  border-width: thin;
+  border-color:#e74c3c ;
+
+
+}
+.error small{
+  font-size: 13px;
+  color :#e74c3c;
+  visibility: visible;
+
+}
+.small-error{
+    visibility: hidden;
+    font-size: 13px;
+  color :#e74c3c;
+    margin-top: 45px;
+   position: absolute;
+   font-family: Segoe UI, Arial, sans-serif;
+}
+
+.small-error1{
+    visibility: hidden;
+    font-size: 13px;
+  color :#e74c3c;
+    margin-top: 70px;
+   position: absolute;
+   font-family: Segoe UI, Arial, sans-serif;
+}
+
+.toast-custom-icon {
+    background-color: #ff0000;
+  }
+</style>
+
+<script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+        apiKey: "AIzaSyCwyVGv24xBXgcupXb6nZAEcuEadNUMsdQ",
+        authDomain: "petriots-9ae02.firebaseapp.com",
+        databaseURL: "https://petriots-9ae02-default-rtdb.firebaseio.com",
+        projectId: "petriots-9ae02",
+        storageBucket: "petriots-9ae02.appspot.com",
+        messagingSenderId: "728168171570",
+        appId: "1:728168171570:web:97301a09052ce3b8fe542b",
+        measurementId: "G-GVBQPKNDJ1"
+};
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+    
+        import{getDatabase,ref,set,child,get}
+         from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+   
+        const db = getDatabase();
+        var smallElement = document.getElementById("errormsg");
+         var smallElement1 = document.getElementById("msgerror");
+
+
+var inputElement = document.getElementById('username');
+inputElement.addEventListener('input', function(event) {
+    smallElement1.style.visibility = "hidden";
+    document.getElementById("username").classList.remove("error");
+});
+
+var inputElement1 = document.getElementById('password');
+inputElement1.addEventListener('input', function(event) {
+    smallElement.style.visibility = "hidden";
+    document.getElementById("password").classList.remove("error");
+});
+
+     
+
+            $('#loginbtn').on('click', function() {
+            
+               const dbref = ref(db);
+               const username = document.getElementById('username');  
+                const password = document.getElementById('password');
+                const adminid = "ADM001";
+         
+         
+
+                if( username.value == "" && password.value == "" ){
+                document.getElementById("username").classList.add("error");
+                smallElement1.style.visibility = "visible";
+                smallElement1.innerText = "Username is required";
+
+                document.getElementById("password").classList.add("error");
+                smallElement.style.visibility = "visible";
+                smallElement.innerText = "Password is required";
+                }
+              else if(username.value == "" ){
+                document.getElementById("username").classList.add("error");
+                smallElement1.style.visibility = "visible";
+                smallElement1.innerText = "Username is required";
+              
+
+               }else if(password.value == ""  ){
+                document.getElementById("username").classList.remove("error");
+                document.getElementById("password").classList.add("error"); 
+                smallElement.style.visibility = "visible";
+                smallElement.innerText = "Password is required";
+
+               }else{
+
+               get(child(dbref, 'admin/'+ username.value)).then((snapshot)=>{
+               
+                if(snapshot.exists()){
+                let dbpass = snapshot.val().password;
+
+                      if(dbpass== password.value){                            
+                        login(snapshot.val());
+                        sessionStorage.setItem('username', JSON.stringify(username.value));
+                        }else{
+                            document.getElementById("username").classList.add("error");  
+                            document.getElementById("password").classList.add("error");
+                            toastr.error('There is no user record corresponding to this identifier. The user may have been deleted.','Error');
+                    
+                        var toast = $('.toast-error');
+                        toast.width(700);
+                        toast.css('background-color', '#EF9F9F');
+                        toast.css({ 
+                        'color':'black', 
+                        'right': '65%',
+                        'font-family':' Segoe UI, Arial, sans-serif',
+                        'font-weight':'300',
+                                   
+                    
+                    });
+                        } 
+                     
+                     
+                    }else{
+                        document.getElementById("username").classList.add("error");  
+                        document.getElementById("password").classList.add("error");
+                        toastr.error('There is no user record corresponding to this identifier. The user may have been deleted.','Error');
+                    
+                        var toast = $('.toast-error');
+                        toast.width(700);
+                        toast.css('background-color', '#EF9F9F');
+                        toast.css({ 
+                        'color':'black', 
+                        'right': '65%',
+                        'font-family':' Segoe UI, Arial, sans-serif',
+                        'font-weight':'300',
+                                   
+                    
+                    });
+
+                  
+                        
+                    }   
+               }); 
+            }
+        }); 
+
+        function login(user) {
+            // Store the user information in local storage
+            localStorage.setItem('username', JSON.stringify(user.username));
+            sessionStorage.setItem('username', JSON.stringify(user.username));
+            // Redirect to the index page
+            window.location.replace("index.html");
+        }
+</script>
+<script>
+    
+</script>
